@@ -10,8 +10,8 @@ import {
 import styled from 'styled-components';
 import PagerView from 'react-native-pager-view';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Theme from '../../assets/theme'
-import Basket from '../../components/basket'
+import Theme from '../../assets/theme';
+import Basket from '../../components/basket';
 
 
 const TabBtn = styled.TouchableOpacity`
@@ -45,8 +45,9 @@ const BottomBtn = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   border-radius:5px;
-
 `
+
+
 
 export default function Product(props) {
   const ProductData = [
@@ -180,7 +181,6 @@ export default function Product(props) {
   const [layoutWidth, setLayoutWidth] = useState(0);
 
   useEffect(() => {
-
     const contentWidth = 60 * ProductData.length + 30;
     const index = tabActive;
 
@@ -202,12 +202,11 @@ export default function Product(props) {
   };
   
   const [basket, setBasket] = useState(false);
-  const [snackBar, setSnackBar] = useState(false);
 
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
 
-      <Basket visible={basket} close={() => setBasket(false)}/>
+      <Basket visible={basket} hidden={() => setBasket(false)}/>
 
       <View style={{marginBottom: 20, paddingHorizontal: 26}}>
         <Text style={{fontSize: 20}}>맡기실 세탁물을 선택해주세요</Text>
@@ -266,7 +265,7 @@ export default function Product(props) {
                 contentContainerStyle={{
                   padding:26,
                 }}
-                scro
+                showsVerticalScrollIndicator={false}
                 renderItem={({item, idx}) => {
                   return (
                     <View>
@@ -310,7 +309,6 @@ export default function Product(props) {
                         </TouchableOpacity>
 
                         <TouchableOpacity
-                          onPress={()=>setSnackBar(true)}
                           style={{
                             width: 36,
                             height: 36,

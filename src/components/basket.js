@@ -1,16 +1,15 @@
-import React, {useEffect} from 'react';
-import {View, Text, Pressable, FlatList, TouchableOpacity, Modal, Animated} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import styled from 'styled-components';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Modal from 'react-native-modal'
 
-const BasketView = styled(Animated.View)`
-  flex:1;
-  position: absolute;
+const BasketView = styled.View`
   width: 100%;
   height:100%;
   bottom: 0;
   z-index: 10;
-  max-height:80%;
+
   background: #fff;
 `;
 
@@ -103,27 +102,19 @@ const BasketItem = props => {
 
 export default function Basket(props) {
 
-  const {visible, close} = props
-  const basketOpen = new Animated.Value(-500)
-
-  useEffect(() => {
-    Animated.timing(basketOpen, {
-      toValue: 0,
-      delay: 100,
-      duration: 500,
-      useNativeDriver: false,
-    }).start();
-  });
+  const {visible, hidden} = props
 
   return (
     <Modal
-      visible={visible}
-      transparent={true}
-      animationType={'fade'}
+      isVisible={visible}
+      useNativeDriver={true}
+      useNativeDriverForBackdrop={true}
+      onBackdropPress={hidden}
+      style={{margin:0,paddingTop:100,}}
+      deviceHeight={500}
     >
       <BasketView
         style={{
-          bottom:basketOpen,
           borderTopLeftRadius: 13,
           borderTopRightRadius: 13,
           backgroundColor:'#fff',
@@ -140,16 +131,17 @@ export default function Basket(props) {
             </View>
           )}
           ItemSeparatorComponent={() => <View style={{height: 10}}></View>}
+          keyExtractor={item => item.index}
         />
 
         <View style={{padding: 26}}>
           <Row>
             <Text style={{fontSize: 12}}>총 금액</Text>
-            <Text style={{color: '#F11064'}}>55,800</Text>
+            <Text style={{color: '#F11064',fontSize:16,fontWeight:'bold'}}>55,800</Text>
           </Row>
           <Row style={{marginTop: 15}}>
             <TouchableOpacity
-              onPress={close}
+              onPress={hidden}
               style={{
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -163,18 +155,7 @@ export default function Basket(props) {
             </TouchableOpacity>
           </Row>
         </View>
-      </BasketView>
-
-      <View style={{
-        position:'absolute',
-        backgroundColor:'rgba(0,0,0,0.8)',
-        width:'100%',
-        height:'100%',
-        zIndex:5,
-      }}>
-
-      </View>
-      
+      </BasketView>      
     </Modal>
   );
 }

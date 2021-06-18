@@ -12,6 +12,12 @@ target 'dailyWashClient_v2' do
     :hermes_enabled => false
   )
 
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
+  pod 'RNSnackbar', :path => '../node_modules/react-native-snackbar'
+
+  pod 'react-native-video', :path => '../node_modules/react-native-video'
+
   target 'dailyWashClient_v2Tests' do
     inherit! :complete
     # Pods for testing

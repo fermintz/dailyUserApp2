@@ -118,10 +118,16 @@ export default function Mypage(props) {
       <Divider />
 
       <View>
+        <NavBtn style={{marginBottom: 0}} onPress={()=> props.navigation.navigate('Event')}>
+          <NavBtnText>이벤트</NavBtnText>
+        </NavBtn>
+        <NavBtn style={{marginBottom: 0}} onPress={()=> props.navigation.navigate('HowTo')}>
+          <NavBtnText>이용방법</NavBtnText>
+        </NavBtn>
         <NavBtn>
           <NavBtnText>문의하기</NavBtnText>
         </NavBtn>
-        <NavBtn style={{marginBottom: 0}}>
+        <NavBtn style={{marginBottom: 0}} onPress={()=> props.navigation.navigate('Notice')}>
           <NavBtnText>공지사항</NavBtnText>
           <NewIcon>N</NewIcon>
         </NavBtn>

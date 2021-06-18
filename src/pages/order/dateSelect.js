@@ -1,11 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import styled from 'styled-components';
 import Theme from '../../assets/theme';
+import LoadingModal from '../../components/modal/loading'
 
 export default function DateSelect(props) {
+  
+  const [Loading, setLoading] = useState(true)
+  
   return (
     <View style={Theme.layout.base}>
+
+      <LoadingModal visible={Loading} hidden={()=> setLoading(false)}/>
+      
       <View>
         <Text style={{fontSize: 20}}>어떤 날짜가 괜찮으세요?</Text>
         <Text style={{color: '#898989', marginTop: 5}}>
@@ -26,6 +33,7 @@ export default function DateSelect(props) {
             </TouchableOpacity>
           </View>
         )}
+        keyExtractor={item => item}
       />
     </View>
   );

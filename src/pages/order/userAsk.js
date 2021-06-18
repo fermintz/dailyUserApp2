@@ -116,7 +116,7 @@ export default function UserAsk(props){
             flexDirection:'row',
             paddingHorizontal:15,
           }}
-          onPress={()=>props.navigation.navigate('OrderFinish')}
+          onPress={()=>props.navigation.navigate('OrderDetail')}
         >
           <Text style={{fontSize:16,color:'#000'}}>다음으로</Text>
         </TouchableOpacity>

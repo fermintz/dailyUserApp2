@@ -10,17 +10,14 @@ const HeaderView = styled.View`
   height:70px;
   padding:0 26px;
   background-color:#fff;
+  z-index:20;
 `
 
 export default function Header(props){
   const navigation = props.navigation
 
   return(
-    <HeaderView
-      style={{
-        
-      }}
-    >
+    <HeaderView>
       <TouchableOpacity
         onPress={()=> navigation.goBack()}
       >

@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, ScrollView, TouchableOpacity, TextInput ,Image} from 'react-native'
 import styled from 'styled-components';
+import Video from 'react-native-video';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Theme from '../../assets/theme'
 
@@ -18,13 +19,19 @@ const InfoText = styled.Text`
   margin-bottom:4px;
   color:#888;
 `
+const partner = require('../../assets/video/partner.mp4')
 
 export default function OrderFinsh(props){
   return(
     <View style={{padding:26,backgroundColor:'#fff',flex:1,}}>
       <View style={{justifyContent:'center',alignItems:'center',marginVertical:40,}}>
-        <View style={{width:160,height:160,backgroundColor:'#f2f2f2',borderRadius:100,}}>
-          <Image source={require('../../assets/img/orderFinish.png')} resizeMode={'contain'} style={{width:160,height:160}}/>
+        <View style={{borderWidth:1,borderRadius:200,overflow:'hidden',borderColor:'#e2e2e2'}}>
+          <Video
+            style={{width:200,height:200}}
+            source={partner}
+            resizeMode={'contain'}
+            repeat={true}
+          />
         </View>
         <Text style={{fontSize:24,marginTop:26,}}>예약이 완료되었습니다</Text>
         <Text style={{fontSize:14,color:'#888',marginTop:10,}}>기사님이 방문하는 날에 맞춰 세탁물을</Text>

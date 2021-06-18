@@ -11,7 +11,7 @@ import PhoneCheck from './pages/phoneCheck';
 
 import Home from './pages/home';
 import MyPage from './pages/mypage'
-import MyOrderView from './pages/myOrder/myOrderView'
+import MyOrderList from './pages/myOrder/myOrderList'
 import BottomNavigator from './components/BottomNavigator'
 
 import MyCoupon from './pages/myCoupon'
@@ -21,37 +21,29 @@ import DateSelect from './pages/order/dateSelect'
 import TimeSelect from './pages/order/timeSelect'
 import Product from './pages/order/product'
 import UserAsk from './pages/order/userAsk'
+import OrderDetail from './pages/order/detail'
 import OrderFinish from './pages/order/Finish'
 
 import MyCredit from './pages/credit/myCredit'
 import CreditAdd from './pages/credit/creditAdd'
 import MyAddress from './pages/myAddress'
+import MyOrderDetail from './pages/myOrder/myOrderDetail'
 
 import AddressInput from './pages/addressRecord/addressInput'
 import GateInput from './pages/addressRecord/gateInput'
 
+import DailyPrice from './pages/dailyPrice'
+import DeliveryInfo from './pages/myOrder/DeliveryInfo'
+
+import Notice from './pages/notice'
+import HowTo from './pages/howTo'
+import Event from './pages/event'
+
+
 const Stack = createStackNavigator();
-const MyOrder = createStackNavigator();
 const BottomTab = createBottomTabNavigator();
 const Order = createStackNavigator();
 const Address = createStackNavigator();
-
-// 주문내역
-function MyOrderStack(){
-  return(
-    <MyOrder.Navigator
-      screenOptions={{
-        headerShown:false
-      }}
-    >
-      <MyOrder.Screen 
-        name="MyOrderView"
-        component={MyOrderView}
-      />
-    </MyOrder.Navigator>
-  )
-}
-
 
 //예약하기
 function OrderStack(){
@@ -77,6 +69,10 @@ function OrderStack(){
       <Order.Screen
         name="UserAsk"
         component={UserAsk}
+      />
+      <Order.Screen
+        name="OrderDetail"
+        component={OrderDetail}
       />
       <Order.Screen
         name="OrderFinish"
@@ -120,7 +116,7 @@ function Main(){
     >
       <BottomTab.Screen
         name="MyOrder"
-        component={MyOrderStack}
+        component={MyOrderList}
       />
       <BottomTab.Screen 
         name="Home"
@@ -206,6 +202,54 @@ export default function App(){
         <Stack.Screen
           name="MyInfo"
           component={MyInfo}
+          options={{
+            headerShown:true,
+            header:(props)=><Header {...props}/>
+          }}
+        />
+        <Stack.Screen
+          name="DailyPrice"
+          component={DailyPrice}
+          options={{
+            headerShown:true,
+            header:(props)=><Header {...props}/>
+          }}
+        />
+        <Stack.Screen 
+          name="MyOrderDetail"
+          component={MyOrderDetail}
+          options={{
+            headerShown:true,
+            header:(props)=><Header {...props}/>
+          }}
+        />
+        <Stack.Screen 
+          name="DeliveryInfo"
+          component={DeliveryInfo}
+          options={{
+            headerShown:true,
+            header:(props)=><Header {...props}/>
+          }}
+        />
+        <Stack.Screen 
+          name="Notice"
+          component={Notice}
+          options={{
+            headerShown:true,
+            header:(props)=><Header {...props}/>
+          }}
+        />
+        <Stack.Screen 
+          name="HowTo"
+          component={HowTo}
+          options={{
+            headerShown:true,
+            header:(props)=><Header {...props}/>
+          }}
+        />
+        <Stack.Screen 
+          name="Event"
+          component={Event}
           options={{
             headerShown:true,
             header:(props)=><Header {...props}/>
