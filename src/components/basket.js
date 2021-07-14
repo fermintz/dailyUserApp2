@@ -4,35 +4,7 @@ import styled from 'styled-components';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Modal from 'react-native-modal'
 
-const BasketView = styled.View`
-  width: 100%;
-  height:100%;
-  bottom: 0;
-  z-index: 10;
 
-  background: #fff;
-`;
-
-const BasketItemView = styled.View`
-  border: 1px solid #e2e2e2;
-  border-radius: 10px;
-  padding: 12px;
-`;
-
-const AmountBtn = styled.TouchableOpacity`
-  border: 1px solid #e2e2e2;
-  border-radius: 3px;
-  justify-content: center;
-  align-items: center;
-  width: 26px;
-  height: 20px;
-`;
-
-const Row = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
 
 const BasketData = [
   {
@@ -134,28 +106,57 @@ export default function Basket(props) {
           keyExtractor={item => item.index}
         />
 
-        <View style={{padding: 26}}>
-          <Row>
+        <Row style={{paddingHorizontal:20,height:60,borderTopWidth:1,borderColor:'#e2e2e2',}}>
+          <Row style={{flex:2,paddingRight:20,borderRightWidth:1,borderColor:'#e2e2e2'}}>
             <Text style={{fontSize: 12}}>총 금액</Text>
             <Text style={{color: '#F11064',fontSize:16,fontWeight:'bold'}}>55,800</Text>
           </Row>
-          <Row style={{marginTop: 15}}>
+          <View style={{flex:1,marginLeft:20,}}>
             <TouchableOpacity
               onPress={hidden}
               style={{
                 justifyContent: 'center',
                 alignItems: 'center',
-                width: '100%',
-                height: 50,
-                borderWidth: 1,
-                borderColor: '#e2e2e2',
-                borderRadius: 10,
+                paddingHorizontal:10,
+                height: 40,
+
               }}>
               <Text>장바구니 닫기</Text>
             </TouchableOpacity>
-          </Row>
-        </View>
+          </View>
+        </Row>
       </BasketView>      
     </Modal>
   );
 }
+
+
+const BasketView = styled.View`
+  width: 100%;
+  height:100%;
+  bottom: 0;
+  z-index: 10;
+
+  background: #fff;
+`;
+
+const BasketItemView = styled.View`
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  padding: 12px;
+`;
+
+const AmountBtn = styled.TouchableOpacity`
+  border: 1px solid #e2e2e2;
+  border-radius: 3px;
+  justify-content: center;
+  align-items: center;
+  width: 26px;
+  height: 20px;
+`;
+
+const Row = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;

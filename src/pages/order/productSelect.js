@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {WebView} from 'react-native-webview';
 import Progress from '../../components/modal/progress';
-import BasketModal from '../../components/modal/basket';
+import BasketModal from '../../components/basket';
 
 export default function Home(props) {
   const handleOnMessage = ({nativeEvent: {data}}) => {
