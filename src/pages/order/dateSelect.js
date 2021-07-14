@@ -1,40 +1,30 @@
 import React, {useState} from 'react';
-import {View, Text, FlatList, TouchableOpacity} from 'react-native';
-import styled from 'styled-components';
-import Theme from '../../assets/theme';
-import LoadingModal from '../../components/modal/loading'
+import {WebView} from 'react-native-webview';
 
-export default function DateSelect(props) {
-  
-  const [Loading, setLoading] = useState(true)
-  
+export default function Home(props) {
+  const handleOnMessage = ({nativeEvent: {data}}) => {
+    const {type, value} = JSON.parse(data);
+
+    switch (type) {
+      case 'route':
+        props.navigation.navigate(value);
+        break;
+      case 'modal':
+        setModalActive(value);
+        break;
+    }
+  };
+
+  const [modalActive, setModalActive] = useState(false);
+
   return (
-    <View style={Theme.layout.base}>
-
-      <LoadingModal visible={Loading} hidden={()=> setLoading(false)}/>
-      
-      <View>
-        <Text style={{fontSize: 20}}>어떤 날짜가 괜찮으세요?</Text>
-        <Text style={{color: '#898989', marginTop: 5}}>
-          선택하신 날짜에 세탁물을 수거합니다
-        </Text>
-      </View>
-
-      <FlatList
-        data={[17, 18, 19, 20, 21, 22, 23, 24, 25]}
-        numColumns={3}
-        renderItem={({item}) => (
-          <View style={{flex:1,alignItems:'center',justifyContent:'center',height: 120,}}>
-            <TouchableOpacity
-              onPress={()=> props.navigation.navigate('TimeSelect')}
-            >
-              <Text style={{fontSize: 32,fontWeight:'bold'}}>{item}</Text>
-              <Text style={{color: '#898989'}}>월요일</Text>
-            </TouchableOpacity>
-          </View>
-        )}
-        keyExtractor={item => item}
+    <>
+      <WebView
+        onMessage={handleOnMessage}
+        showsVerticalScrollIndicator={false}
+        source={{uri: 'http://192.168.0.25:8080/dateSelect'}}
+        style={{zIndex:10,}}
       />
-    </View>
+    </>
   );
 }

@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import {WebView} from 'react-native-webview';
+import Progress from '../../components/modal/progress';
+import BasketModal from '../../components/modal/basket';
 
 export default function Home(props) {
   const handleOnMessage = ({nativeEvent: {data}}) => {
@@ -12,17 +14,29 @@ export default function Home(props) {
       case 'modal':
         setModalActive(value);
         break;
+      case 'basket':
+        setBasket(value);
+        break;
     }
   };
 
-  const [modalActive, setModalActive] = useState(false);
+  const [modalActive, setModalActive] = useState(true);
+  const [basket, setBasket] = useState(false);
 
   return (
     <>
+      <Progress 
+        visible={modalActive}
+        hidden={() => setModalActive(false)}
+      />
+      <BasketModal 
+        visible={basket}
+        hidden={() => setBasket(false)}
+      />
       <WebView
         onMessage={handleOnMessage}
         showsVerticalScrollIndicator={false}
-        source={{uri: 'http://192.168.0.25:8080/timeSelect'}}
+        source={{uri: 'http://192.168.0.25:8080/product'}}
         style={{zIndex:10,}}
       />
     </>

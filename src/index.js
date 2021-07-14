@@ -20,6 +20,7 @@ import MyInfo from './pages/myInfo'
 import DateSelect from './pages/order/dateSelect'
 import TimeSelect from './pages/order/timeSelect'
 import Product from './pages/order/product'
+import ProductSelect from './pages/order/productSelect'
 import UserAsk from './pages/order/userAsk'
 import OrderDetail from './pages/order/detail'
 import OrderFinish from './pages/order/Finish'
@@ -65,6 +66,10 @@ function OrderStack(){
       <Order.Screen 
         name="Product"
         component={Product}
+      />
+      <Order.Screen 
+        name="ProductSelect"
+        component={ProductSelect}
       />
       <Order.Screen
         name="UserAsk"
