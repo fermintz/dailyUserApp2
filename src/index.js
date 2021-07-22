@@ -11,7 +11,7 @@ import PhoneCheck from './pages/phoneCheck';
 
 import Home from './pages/home';
 import MyPage from './pages/mypage'
-import MyOrderList from './pages/myOrder/myOrderList'
+import MyOrderList from './pages/myOrder/myOrderList_b'
 import BottomNavigator from './components/BottomNavigator'
 
 import MyCoupon from './pages/myCoupon'
@@ -50,7 +50,7 @@ const Address = createStackNavigator();
 function OrderStack(){
   return(
     <Order.Navigator
-      initialRouteName="DateSelect"
+      initialRouteName="OrderDetail"
       screenOptions={{
         header: (props) => <Header {...props} />
       }}
